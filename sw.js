@@ -1,6 +1,6 @@
 // Bump VERSION whenever you change prices or products, so customers get the new files.
-var VERSION = 'zoni-v3';
-var FILES = ["./", "index.html", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "img/banner.jpg", "img/l-apple.png", "img/l-bank.png", "img/l-bkash.png", "img/l-card.png", "img/l-nagad.png", "img/l-play.png", "img/l-rocket.png", "img/logo.jpg", "img/logo.png", "img/p1.jpg", "img/p10.jpg", "img/p12.jpg", "img/p17.jpg", "img/p2.jpg", "img/p3.jpg", "img/p4.jpg", "img/p5.jpg", "img/p6.jpg", "img/p7.jpg", "img/t1.jpg", "img/t10.jpg", "img/t11.jpg", "img/t12.jpg", "img/t13.jpg", "img/t14.jpg", "img/t15.jpg", "img/t16.jpg", "img/t17.jpg", "img/t18.jpg", "img/t2.jpg", "img/t3.jpg", "img/t4.jpg", "img/t5.jpg", "img/t6.jpg", "img/t7.jpg", "img/t8.jpg", "img/t9.jpg", "img/t9b.jpg"];
+var VERSION = 'zoni-v4';
+var FILES = ["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png", "banner.jpg", "l-apple.png", "l-bank.png", "l-bkash.png", "l-card.png", "l-nagad.png", "l-play.png", "l-rocket.png", "logo.jpg", "logo.png", "p1.jpg", "p10.jpg", "p12.jpg", "p17.jpg", "p2.jpg", "p3.jpg", "p4.jpg", "p5.jpg", "p6.jpg", "p7.jpg", "t1.jpg", "t10.jpg", "t11.jpg", "t12.jpg", "t13.jpg", "t14.jpg", "t15.jpg", "t16.jpg", "t17.jpg", "t18.jpg", "t2.jpg", "t3.jpg", "t4.jpg", "t5.jpg", "t6.jpg", "t7.jpg", "t8.jpg", "t9.jpg", "t9b.jpg"];
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(VERSION).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));
 });
