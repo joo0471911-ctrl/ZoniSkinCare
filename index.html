@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#C2185B">
+<meta name="description" content="Zoni Skin Care. Face creams, serums, face wash, hair removal and more. Order on WhatsApp. Delivery all over Bangladesh.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icons/favicon.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Zoni Skin Care</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@400;500;600&family=Noto+Sans+Bengali:wght@400;600&display=swap">
+<style>
+/* Layout: fluid column up to 1180px. Header with brand, small WhatsApp and Facebook icons, desktop nav. Featured row (swipe on phones, four across on desktop), search, category chips, product grid, payment-aware order sheet. Bottom tab bar on phones only. */
+:root {
+  --bg: #FFF5F8;
+  --surface: #FFFFFF;
+  --ink: #2A1620;
+  --muted: #7A5A68;
+  --line: #F0D9E1;
+  --accent: #C2185B;
+  --accent-ink: #FFFFFF;
+  --soft: #FCE4EC;
+  --gold: #A9792B;
+  --shadow: 0 -12px 40px rgba(42, 22, 32, 0.2);
+  --f-display: 'Playfair Display', Georgia, 'Noto Sans Bengali', serif;
+  --f-body: 'DM Sans', 'Noto Sans Bengali', 'Segoe UI', system-ui, sans-serif;
+  --gap: clamp(10px, 1.6vw, 20px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1B1015; --surface: #26161D; --ink: #FBEFF3; --muted: #D1A9B8; --line: #40262F;
+    --accent: #F26BA2; --accent-ink: #2A0D18; --soft: #34202A; --gold: #D9B26A;
+    --shadow: 0 -12px 40px rgba(0, 0, 0, 0.55);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1B1015; --surface: #26161D; --ink: #FBEFF3; --muted: #D1A9B8; --line: #40262F;
+  --accent: #F26BA2; --accent-ink: #2A0D18; --soft: #34202A; --gold: #D9B26A;
+  --shadow: 0 -12px 40px rgba(0, 0, 0, 0.55);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.45;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 96px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+button, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.wrap { max-width: 1180px; margin: 0 auto; }
+
+/* header */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding-block: 12px 10px; display: flex; align-items: center; gap: 14px; }
+.brand { flex: 1; margin: 0; }
+.brandbtn { display: flex; align-items: center; gap: 10px; border: 0; background: none; padding: 0; text-align: left; }
+.logo { width: 46px; height: 46px; border-radius: 50%; flex: none; display: block; }
+.bname { font-family: var(--f-display); font-weight: 700; font-size: 24px; letter-spacing: -0.01em; line-height: 1; }
+.bname small { display: block; font-family: var(--f-body); font-weight: 600; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-top: 4px; }
+
+.nav { display: none; gap: 6px; }
+.navbtn { border: 0; background: none; padding: 8px 14px; border-radius: 999px; font-weight: 600; color: var(--muted); position: relative; }
+.navbtn[aria-current="page"] { background: var(--soft); color: var(--accent); }
+.navbtn .dot { position: static; display: inline-grid; margin-left: 6px; vertical-align: 1px; }
+.social { display: flex; gap: 8px; flex: 1; justify-content: flex-end; }
+.sbtn { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--accent); display: grid; place-items: center; text-decoration: none; }
+.sbtn svg { width: 19px; height: 19px; }
+.sbtn:hover { background: var(--soft); }
+
+/* home */
+.hero { padding-block: 8px 6px; }
+.hero2 { display: grid; gap: 24px; padding: clamp(20px, 4vw, 52px); border-radius: 28px; background: linear-gradient(120deg, var(--soft) 0%, var(--bg) 100%); border: 1px solid var(--line); margin-top: 6px; }
+.eyebrow { font-weight: 600; letter-spacing: 0.03em; color: var(--accent); font-size: 14px; }
+.lead { font-family: var(--f-display); font-size: clamp(36px, 5.6vw, 66px); line-height: 1.03; letter-spacing: -0.02em; margin: 8px 0 14px; text-wrap: balance; }
+.lead em { color: var(--accent); font-style: italic; font-weight: 600; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.btn { border: 0; background: var(--accent); color: var(--accent-ink); border-radius: 999px; padding: 14px 26px; font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; }
+.ghost.pill { border-radius: 999px; padding: 13px 22px; }
+.trust { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 10px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.trust li { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+.trust svg { width: 26px; height: 26px; color: var(--accent); flex: none; }
+.trust b { font-size: 12.5px; line-height: 1.25; font-weight: 600; }
+@media (min-width: 640px) { .trust li { flex-direction: row; text-align: left; gap: 10px; } .trust b { font-size: 14px; } }
+.hvis { display: grid; grid-template-columns: 1fr 1.15fr 1fr; gap: clamp(8px, 1.4vw, 16px); align-items: center; }
+.hv { border: 0; padding: 0; background: var(--surface); border-radius: 20px; overflow: hidden; aspect-ratio: 3 / 4; box-shadow: 0 10px 30px rgba(194, 24, 91, 0.14); }
+.hv:nth-child(2) { aspect-ratio: 3 / 4.3; }
+.hv img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.block { margin-top: clamp(30px, 5vw, 60px); }
+.cats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); }
+.cat-tile { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 10px 10px 14px; display: flex; flex-direction: column; align-items: center; gap: 2px; text-align: center; }
+.cat-tile:hover { border-color: var(--accent); }
+.cat-tile img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 14px; margin-bottom: 8px; display: block; }
+.cat-tile b { font-weight: 600; }
+.cat-tile small { color: var(--muted); font-size: 13px; }
+.promo { display: block; width: 100%; padding: 0; border: 0; border-radius: 22px; overflow: hidden; background: var(--soft); }
+.promo img { width: 100%; height: auto; display: block; }
+section[id] { scroll-margin-top: 84px; }
+.foot2 { margin-top: clamp(36px, 6vw, 64px); background: var(--soft); border-radius: 28px; padding: clamp(30px, 5vw, 56px) 20px; text-align: center; color: var(--muted); font-size: 13px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.flogo { width: 88px; height: 88px; border-radius: 50%; display: block; }
+.fname { font-family: var(--f-display); font-size: 24px; font-weight: 700; color: var(--ink); line-height: 1.1; }
+.ftag { margin-top: -12px; }
+.flinks { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.fl { border: 0; background: none; padding: 2px 0; font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
+.fl:hover { color: var(--accent); }
+.fsoc { display: flex; gap: 12px; }
+.fsq { width: 46px; height: 46px; display: grid; place-items: center; color: var(--ink); text-decoration: none; border: 1px solid color-mix(in srgb, var(--muted) 45%, transparent); background: transparent; }
+.fsq:hover { background: var(--surface); color: var(--accent); }
+.fsq svg { width: 20px; height: 20px; }
+.fphone { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); font-weight: 600; font-size: 15px; text-decoration: none; }
+.fphone svg { width: 17px; height: 17px; color: var(--accent); }
+.stores { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.store { display: flex; align-items: center; gap: 10px; background: #111; color: #fff; border: 1px solid #555; border-radius: 12px; padding: 8px 18px 8px 12px; text-align: left; text-decoration: none; min-width: 160px; }
+.store svg, .store img { width: 28px; height: 28px; flex: none; }
+.store small { display: block; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.8; }
+.store b { display: block; font-size: 16px; line-height: 1.15; font-weight: 600; }
+.store:disabled { opacity: 0.7; cursor: not-allowed; }
+.cr { margin: 0; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; }
+.pays { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.pay img { height: 30px; width: auto; max-width: none; flex: none; display: block; }
+.pay.plogo { padding: 0 12px; height: 44px; flex: none; }
+.pay { background: #fff; border: 1px solid rgba(0, 0, 0, 0.08); border-radius: 10px; height: 38px; padding: 0 14px; display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
+.pay svg { width: 20px; height: 20px; }
+.pay.bkash { color: #E2136E; font-style: italic; }
+.pay.nagad { color: #E8590C; }
+.pay.rocket { color: #8C3494; }
+.pay.bank { color: #1565C0; }
+.pay.cardpay { color: #37474F; }
+.fnote { margin: 0; font-size: 12px; }
+.allb { border-radius: 28px; padding: clamp(20px, 3.5vw, 40px); background: linear-gradient(115deg, #7D0F47 0%, #C2185B 58%, #D9567F 100%); color: #fff; overflow: hidden; }
+.allb-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; }
+.allb-t { display: flex; align-items: center; gap: 16px; min-width: 0; }
+.allb-logo { width: 64px; height: 64px; border-radius: 50%; flex: none; border: 2px solid rgba(255, 255, 255, 0.5); }
+.allb-eye { font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #F6D9A8; font-weight: 600; }
+.allb h2 { font-family: var(--f-display); font-size: clamp(24px, 3.4vw, 40px); line-height: 1.1; letter-spacing: -0.01em; margin: 4px 0 0; text-wrap: balance; }
+.allb h2 em { color: #F6D9A8; font-style: italic; }
+.btn.gold { background: #F6D9A8; color: #4A1030; }
+.marq { margin-top: 22px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
+.track { display: flex; gap: 12px; width: max-content; animation: slide 70s linear infinite; }
+.marq:hover .track, .marq:focus-within .track { animation-play-state: paused; }
+@keyframes slide { to { transform: translateX(calc(-50% - 6px)); } }
+.mt { flex: none; width: clamp(104px, 13vw, 148px); aspect-ratio: 4 / 5; padding: 0; border: 2px solid rgba(255, 255, 255, 0.4); border-radius: 16px; overflow: hidden; background: #fff; }
+.mt img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (prefers-reduced-motion: reduce) { .track { animation: none; } .marq { overflow-x: auto; } }
+.sub { color: var(--muted); margin: 0 0 18px; max-width: 46ch; font-size: 16px; }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 14px 0 10px; }
+.sec-head h2 { font-family: var(--f-display); font-size: clamp(20px, 2.4vw, 28px); letter-spacing: -0.01em; margin: 0; }
+.sec-head span { color: var(--muted); font-size: 13.5px; }
+.feat-row { display: flex; gap: var(--gap); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; scrollbar-width: none; }
+.feat-row::-webkit-scrollbar { display: none; }
+.fcard { flex: 0 0 min(64%, 250px); scroll-snap-align: start; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.fopen { border: 0; background: none; padding: 0; text-align: left; display: flex; flex-direction: column; flex: 1; }
+.fcard .info { padding: 12px 14px 8px; }
+.mini { margin: 4px 14px 14px; border: 1px solid var(--accent); background: none; color: var(--accent); border-radius: 12px; padding: 9px 12px; font-weight: 600; }
+.mini:hover { background: var(--accent); color: var(--accent-ink); }
+
+.search { width: 100%; border: 1px solid var(--line); background: var(--surface); border-radius: 14px; padding: 12px 14px; margin-bottom: 10px; max-width: 560px; display: block; }
+.search::placeholder { color: var(--muted); }
+.chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 6px; scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chip { flex: none; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 7px 14px; font-size: 14px; }
+.chip[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--gap); margin-top: 14px; }
+.card { text-align: left; padding: 0; background: var(--surface); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; border: 1px solid var(--line); }
+.card:hover, .fcard:hover { border-color: var(--accent); }
+.ph { background: var(--soft); aspect-ratio: 4 / 5; position: relative; overflow: hidden; }
+.ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.badge { position: absolute; top: 8px; left: 8px; background: var(--accent); color: var(--accent-ink); font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 999px; }
+.info { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 2px; flex: 1; }
+.cat { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+.name { font-weight: 600; line-height: 1.25; }
+.meta { color: var(--muted); font-size: 13px; }
+.empty { grid-column: 1 / -1; text-align: center; color: var(--muted); padding: 36px 0; }
+.recs { grid-column: 1 / -1; font-family: var(--f-display); font-size: 20px; letter-spacing: -0.01em; margin: 14px 0 0; }
+.price { margin-top: auto; padding-top: 6px; font-variant-numeric: tabular-nums; }
+.price b { font-weight: 600; }
+.price s { color: var(--muted); font-size: 13px; margin-left: 6px; }
+.price.ask { color: var(--muted); font-size: 13px; }
+.pbox { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin: 6px 0 4px; font-variant-numeric: tabular-nums; }
+.pbox strong { font-family: var(--f-body); font-weight: 700; font-size: 26px; color: var(--accent); }
+.pbox s { color: var(--muted); }
+.pbox span { background: var(--soft); color: var(--accent); font-size: 12.5px; font-weight: 600; border-radius: 999px; padding: 2px 10px; }
+
+.foot { margin-top: 32px; padding-block: 22px 8px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; display: grid; gap: 6px; }
+.foot b { color: var(--ink); }
+
+/* order page */
+h2.screen { font-family: var(--f-display); font-size: clamp(26px, 3vw, 36px); letter-spacing: -0.02em; margin: 8px 0 12px; }
+.hint { background: var(--soft); border-radius: 12px; padding: 10px 12px; font-size: 13.5px; color: var(--muted); margin: 0 0 8px; }
+.cartgrid { display: grid; gap: 18px; align-items: start; }
+.line { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.line .ph { aspect-ratio: 1 / 1; border-radius: 12px; }
+.line .name { font-size: 14.5px; }
+.qty { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); margin-top: 6px; }
+.qty button { width: 32px; height: 32px; border: 0; background: none; font-size: 18px; line-height: 1; }
+.qty output { min-width: 22px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 600; }
+.summary { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 16px; display: grid; gap: 12px; }
+.total { display: flex; justify-content: space-between; align-items: baseline; font-variant-numeric: tabular-nums; }
+.total strong { font-size: 20px; }
+.summary .small { margin: 0; font-size: 13px; color: var(--muted); }
+
+.primary { width: 100%; border: 0; background: var(--accent); color: var(--accent-ink); border-radius: 14px; padding: 15px 18px; font-weight: 600; font-size: 16px; display: flex; justify-content: center; align-items: center; gap: 10px; text-decoration: none; text-align: center; }
+.primary svg { width: 20px; height: 20px; }
+a.primary { color: var(--accent-ink); }
+.ghost { border: 1px solid var(--line); background: var(--surface); border-radius: 14px; padding: 13px 18px; font-weight: 600; text-decoration: none; color: var(--ink); display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.ghost svg { width: 19px; height: 19px; color: var(--accent); }
+
+/* bottom tab bar, phones only */
+.tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 6; background: var(--surface); border-top: 1px solid var(--line); padding: 8px max(16px, env(safe-area-inset-right, 0px)) calc(8px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.tabs div { max-width: 520px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.tab { border: 0; background: none; padding: 8px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 12.5px; color: var(--muted); position: relative; }
+.tab svg { width: 24px; height: 24px; }
+.tab[aria-current="page"] { color: var(--accent); font-weight: 600; background: var(--soft); }
+.dot { position: absolute; top: 2px; left: calc(50% + 6px); min-width: 18px; height: 18px; border-radius: 99px; background: var(--accent); color: var(--accent-ink); font-size: 11px; font-weight: 600; display: grid; place-items: center; padding: 0 5px; }
+
+/* sheet: bottom sheet on phones, centred dialog on larger screens */
+.scrim { position: fixed; inset: 0; z-index: 20; background: rgba(20, 8, 14, 0.55); display: flex; align-items: flex-end; justify-content: center; }
+.sheet { position: relative; width: 100%; max-width: 560px; max-height: 92%; overflow-y: auto; background: var(--surface); border-radius: 24px 24px 0 0; box-shadow: var(--shadow); padding: 18px max(18px, env(safe-area-inset-right, 0px)) 0 max(18px, env(safe-area-inset-left, 0px)); animation: up 0.22s ease-out; }
+@keyframes up { from { transform: translateY(24px); opacity: 0.6; } to { transform: none; opacity: 1; } }
+.closebar { position: sticky; top: 8px; height: 0; z-index: 3; }
+.sheet .close { position: absolute; top: 0; right: 0; z-index: 2; border: 1px solid var(--line); background: var(--surface); width: 36px; height: 36px; border-radius: 50%; font-size: 20px; line-height: 1; }
+.pcols { display: grid; gap: 14px; }
+.sheet .hero { background: var(--soft); border-radius: 18px; height: 260px; overflow: hidden; }
+.sheet .hero img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.thumbs { display: flex; gap: 8px; margin-top: 10px; }
+.thumb { width: 56px; height: 70px; padding: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--soft); }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.thumb[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.sheet h3 { font-family: var(--f-display); font-size: 24px; letter-spacing: -0.02em; margin: 2px 0 4px; line-height: 1.15; }
+.sheet p { margin: 8px 0; }
+.sheet .bn { color: var(--muted); font-size: 14.5px; margin: 0 0 6px; }
+.label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 14px 0 6px; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tags span { background: var(--soft); border-radius: 999px; font-size: 13px; padding: 3px 10px; }
+.size { border: 1px solid var(--line); background: var(--surface); border-radius: 12px; padding: 8px 14px; }
+.pricelink { margin-top: 14px; }
+.buy { position: sticky; bottom: 0; background: var(--surface); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px; align-items: center; margin-top: 16px; padding: 12px 0 calc(12px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); }
+.buy .qty { margin: 0; }
+.poster { width: 100%; height: auto; border-radius: 14px; display: block; border: 1px solid var(--line); }
+.end { height: calc(20px + env(safe-area-inset-bottom, 0px)); }
+
+/* checkout form and payment methods */
+.form { display: grid; gap: 12px; margin-top: 10px; }
+.form label.f { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
+.form input[type="text"], .form input[type="tel"], .form textarea { width: 100%; border: 1px solid var(--line); background: var(--bg); border-radius: 12px; padding: 12px 14px; color: var(--ink); font-size: 16px; }
+.form textarea { min-height: 84px; resize: vertical; }
+.form .fine { font-size: 13px; color: var(--muted); margin: 0; }
+.form .err { color: var(--accent); font-weight: 600; }
+.pms { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+.pm { display: flex; gap: 10px; align-items: center; border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; background: var(--bg); cursor: pointer; }
+.pm input { accent-color: var(--accent); margin: 0; flex: none; }
+.pm:has(input:checked) { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.pm i { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.pm img { width: 44px; height: 32px; object-fit: contain; flex: none; background: #fff; border-radius: 8px; padding: 3px; border: 1px solid var(--line); }
+.pm b { font-weight: 600; }
+.pm small { display: block; color: var(--muted); font-size: 12.5px; line-height: 1.3; }
+.payinfo { background: var(--soft); border-radius: 12px; padding: 10px 12px; font-size: 14px; }
+.payinfo b { color: var(--accent); user-select: all; }
+.copy { border: 1px solid var(--accent); background: var(--surface); color: var(--accent); border-radius: 999px; padding: 2px 12px; font-size: 13px; font-weight: 600; margin-left: 6px; }
+.payact { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 2px; }
+.openapp { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; font-weight: 700; font-size: 14px; color: #fff; text-decoration: none; }
+.openapp img { width: 22px; height: 22px; object-fit: contain; background: #fff; border-radius: 6px; padding: 2px; }
+.qrbox { display: flex; align-items: center; gap: 14px; margin-top: 12px; padding: 12px; border-radius: 12px; background: #fff; color: #222; border: 1px solid var(--line); }
+.qrbox svg { width: 120px; height: 120px; flex: none; display: block; }
+.qrbox small { display: block; color: #555; font-size: 12.5px; line-height: 1.4; }
+.qrbox b { color: #222; user-select: all; }
+.doneBox { max-width: 520px; margin: 40px auto 28px; text-align: center; display: grid; gap: 12px; justify-items: center; }
+.doneBox p { margin: 0; }
+.doneBox b { color: var(--accent); }
+.tick { width: 64px; height: 64px; border-radius: 50%; background: #2E7D32; color: #fff; display: grid; place-items: center; font-size: 34px; }
+.doneBtns { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 6px; }
+.copy:hover { background: var(--accent); color: var(--accent-ink); }
+
+
+.toast { position: fixed; left: 50%; bottom: calc(86px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 30; background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 999px; font-size: 14px; max-width: calc(100% - 32px); }
+
+@media (min-width: 760px) {
+  .scrim { align-items: center; }
+  .sheet { max-width: 940px; max-height: 90vh; border-radius: 24px; padding-inline: 26px; }
+  .sheet.narrow { max-width: 600px; }
+  .pcols { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 26px; }
+  .sheet .hero { height: 430px; }
+  .sheet h3 { font-size: 28px; }
+}
+@media (min-width: 640px) { .cats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (min-width: 900px) {
+  .hero2 { grid-template-columns: 1fr 1fr; align-items: center; }
+  body { padding-bottom: 40px; }
+  .tabs { display: none; }
+  .nav { display: flex; }
+  .toast { bottom: 28px; }
+  .fcard { flex: 1 1 0; }
+  .feat-row { overflow: visible; }
+  .grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+  .cartgrid { grid-template-columns: minmax(0, 1fr) 360px; gap: 32px; }
+  .summary { position: sticky; top: 90px; }
+  .info { padding: 12px 14px 14px; }
+}
+@media (prefers-reduced-motion: reduce) { .sheet { animation: none; } }
+
+/* standalone page basics */
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); color-scheme: light; }
+html, body { margin: 0; } img { max-width: 100%; } [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <h1 class="brand"><button class="brandbtn" type="button" data-go="shop" data-home="1" aria-label="Zoni Skin Care home"><img class="logo" src="img/logo.png" alt="Zoni Skin Care logo"><span class="bname">Zoni<small>Skin Care</small></span></button></h1>
+    <nav class="nav" aria-label="Pages">
+      <button class="navbtn" id="nav-shop" data-go="shop" data-home="1" type="button">Home</button>
+      <button class="navbtn" type="button" data-scroll="products">Shop</button>
+      <button class="navbtn" type="button" data-scroll="categories">Categories</button>
+      <button class="navbtn" type="button" data-scroll="contact">Contact</button>
+      <button class="navbtn" id="nav-cart" data-go="cart" type="button">My order<span class="dot" id="dot2" hidden>0</span></button>
+    </nav>    <div class="social">
+      <a class="sbtn" href="https://wa.me/c/8801349751534" target="_blank" rel="noopener" aria-label="WhatsApp catalog" title="WhatsApp catalog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5a8.5 8.5 0 00-7.3 12.8L3.5 20.5l4.3-1.1A8.5 8.5 0 1012 3.5z"/><path d="M9 8.8c.3 2.8 2.4 5 5.3 5.7l1-1.3-1.9-.9-.7.7c-.9-.4-1.7-1.2-2.1-2.1l.7-.7-.9-1.9L9 8.8z"/></svg></a>
+      <a class="sbtn" href="https://www.facebook.com/share/19kcMm9c6L/" target="_blank" rel="noopener" aria-label="Facebook page" title="Facebook page"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H8v3h2.5V21h3z"/></svg></a>
+    </div>
+  </header>
+  <main id="view"></main>
+</div>
+
+<nav class="tabs" aria-label="Main">
+  <div>
+    <button class="tab" id="tab-shop" data-go="shop" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9l1.5-5h13L20 9"/><path d="M4 9v11h16V9"/><path d="M9 20v-6h6v6"/></svg>
+      Shop
+    </button>
+    <button class="tab" id="tab-cart" data-go="cart" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h14l-1.2 12H6.2L5 7z"/><path d="M9 7a3 3 0 016 0"/></svg>
+      My order
+      <span class="dot" id="dot" hidden>0</span>
+    </button>
+  </div>
+</nav>
+
+<div id="sheet" hidden></div>
+<div id="toast" class="toast" role="status" hidden></div>
+
+<script>
+(function () {
+  var WA_CATALOG = 'https://wa.me/c/8801349751534';   // prices live in this WhatsApp catalog
+  var WA_CHAT = 'https://wa.me/8801349751534';        // orders are sent to this number
+  var FB = 'https://www.facebook.com/share/19kcMm9c6L/';
+  var ICON_FB = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H8v3h2.5V21h3z"/></svg>';
+  var ICON_WA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5a8.5 8.5 0 00-7.3 12.8L3.5 20.5l4.3-1.1A8.5 8.5 0 1012 3.5z"/><path d="M9 8.8c.3 2.8 2.4 5 5.3 5.7l1-1.3-1.9-.9-.7.7c-.9-.4-1.7-1.2-2.1-2.1l.7-.7-.9-1.9L9 8.8z"/></svg>';
+
+  // Store links. Paste your Google Play and App Store addresses here once the app is published. Empty means the button shows "Coming soon".
+  var APP_LINKS = { play: '', apple: '' };
+
+  // Payment methods. Put your own numbers in num (bKash, Nagad, Rocket) and your bank details in info.
+  // While they are empty, customers are told you will send the number on WhatsApp.
+  var QR = { n: 21, d: 'M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM10 0h1v1h-1zM12 0h1v1h-1zM14 0h1v1h-1zM15 0h1v1h-1zM16 0h1v1h-1zM17 0h1v1h-1zM18 0h1v1h-1zM19 0h1v1h-1zM20 0h1v1h-1zM0 1h1v1h-1zM6 1h1v1h-1zM12 1h1v1h-1zM14 1h1v1h-1zM20 1h1v1h-1zM0 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM6 2h1v1h-1zM8 2h1v1h-1zM10 2h1v1h-1zM14 2h1v1h-1zM16 2h1v1h-1zM17 2h1v1h-1zM18 2h1v1h-1zM20 2h1v1h-1zM0 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM6 3h1v1h-1zM12 3h1v1h-1zM14 3h1v1h-1zM16 3h1v1h-1zM17 3h1v1h-1zM18 3h1v1h-1zM20 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM6 4h1v1h-1zM9 4h1v1h-1zM11 4h1v1h-1zM12 4h1v1h-1zM14 4h1v1h-1zM16 4h1v1h-1zM17 4h1v1h-1zM18 4h1v1h-1zM20 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM9 5h1v1h-1zM10 5h1v1h-1zM11 5h1v1h-1zM14 5h1v1h-1zM20 5h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM15 6h1v1h-1zM16 6h1v1h-1zM17 6h1v1h-1zM18 6h1v1h-1zM19 6h1v1h-1zM20 6h1v1h-1zM8 7h1v1h-1zM10 7h1v1h-1zM0 8h1v1h-1zM1 8h1v1h-1zM2 8h1v1h-1zM4 8h1v1h-1zM5 8h1v1h-1zM6 8h1v1h-1zM7 8h1v1h-1zM8 8h1v1h-1zM10 8h1v1h-1zM12 8h1v1h-1zM13 8h1v1h-1zM14 8h1v1h-1zM18 8h1v1h-1zM0 9h1v1h-1zM3 9h1v1h-1zM5 9h1v1h-1zM8 9h1v1h-1zM9 9h1v1h-1zM10 9h1v1h-1zM11 9h1v1h-1zM13 9h1v1h-1zM14 9h1v1h-1zM15 9h1v1h-1zM16 9h1v1h-1zM17 9h1v1h-1zM19 9h1v1h-1zM0 10h1v1h-1zM2 10h1v1h-1zM4 10h1v1h-1zM5 10h1v1h-1zM6 10h1v1h-1zM8 10h1v1h-1zM10 10h1v1h-1zM11 10h1v1h-1zM14 10h1v1h-1zM16 10h1v1h-1zM20 10h1v1h-1zM0 11h1v1h-1zM4 11h1v1h-1zM5 11h1v1h-1zM7 11h1v1h-1zM8 11h1v1h-1zM11 11h1v1h-1zM12 11h1v1h-1zM15 11h1v1h-1zM16 11h1v1h-1zM18 11h1v1h-1zM3 12h1v1h-1zM6 12h1v1h-1zM8 12h1v1h-1zM9 12h1v1h-1zM11 12h1v1h-1zM14 12h1v1h-1zM16 12h1v1h-1zM17 12h1v1h-1zM18 12h1v1h-1zM20 12h1v1h-1zM8 13h1v1h-1zM13 13h1v1h-1zM15 13h1v1h-1zM17 13h1v1h-1zM20 13h1v1h-1zM0 14h1v1h-1zM1 14h1v1h-1zM2 14h1v1h-1zM3 14h1v1h-1zM4 14h1v1h-1zM5 14h1v1h-1zM6 14h1v1h-1zM8 14h1v1h-1zM12 14h1v1h-1zM14 14h1v1h-1zM16 14h1v1h-1zM18 14h1v1h-1zM19 14h1v1h-1zM20 14h1v1h-1zM0 15h1v1h-1zM6 15h1v1h-1zM8 15h1v1h-1zM9 15h1v1h-1zM13 15h1v1h-1zM15 15h1v1h-1zM17 15h1v1h-1zM20 15h1v1h-1zM0 16h1v1h-1zM2 16h1v1h-1zM3 16h1v1h-1zM4 16h1v1h-1zM6 16h1v1h-1zM8 16h1v1h-1zM10 16h1v1h-1zM12 16h1v1h-1zM14 16h1v1h-1zM18 16h1v1h-1zM19 16h1v1h-1zM20 16h1v1h-1zM0 17h1v1h-1zM2 17h1v1h-1zM3 17h1v1h-1zM4 17h1v1h-1zM6 17h1v1h-1zM11 17h1v1h-1zM16 17h1v1h-1zM18 17h1v1h-1zM19 17h1v1h-1zM0 18h1v1h-1zM2 18h1v1h-1zM3 18h1v1h-1zM4 18h1v1h-1zM6 18h1v1h-1zM8 18h1v1h-1zM9 18h1v1h-1zM10 18h1v1h-1zM11 18h1v1h-1zM14 18h1v1h-1zM16 18h1v1h-1zM18 18h1v1h-1zM20 18h1v1h-1zM0 19h1v1h-1zM6 19h1v1h-1zM8 19h1v1h-1zM9 19h1v1h-1zM11 19h1v1h-1zM12 19h1v1h-1zM13 19h1v1h-1zM15 19h1v1h-1zM17 19h1v1h-1zM19 19h1v1h-1zM20 19h1v1h-1zM0 20h1v1h-1zM1 20h1v1h-1zM2 20h1v1h-1zM3 20h1v1h-1zM4 20h1v1h-1zM5 20h1v1h-1zM6 20h1v1h-1zM8 20h1v1h-1zM11 20h1v1h-1zM14 20h1v1h-1zM15 20h1v1h-1zM16 20h1v1h-1zM18 20h1v1h-1zM20 20h1v1h-1z' };
+  // Android app packages used to open the wallet apps. If the app is not installed the phone opens its Play Store page.
+  var APPPKG = { bkash: 'com.bKash.customerapp', nagad: 'com.konasl.nagad', rocket: 'com.dbbl.mbs.apps.main' };
+  var LOGO = { bkash: 'img/l-bkash.png', nagad: 'img/l-nagad.png', rocket: 'img/l-rocket.png', bank: 'img/l-bank.png', card: 'img/l-card.png', apple: 'img/l-apple.png', play: 'img/l-play.png' };
+  function intentUrl(id) { var pk = APPPKG[id]; return 'intent://#Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;package=' + pk + ';S.browser_fallback_url=' + encodeURIComponent('https://play.google.com/store/apps/details?id=' + pk) + ';end'; }
+  var PAY = [
+    { id: 'cod', n: 'Cash on delivery', s: 'Pay in cash when your order arrives', c: '#2E7D32' },
+    { id: 'bkash', n: 'bKash', s: 'Send Money from the bKash app', num: '+8801330027701', c: '#E2136E', wallet: 1 },
+    { id: 'nagad', n: 'Nagad', s: 'Send Money from the Nagad app', num: '+8801330027701', c: '#F6921E', wallet: 1 },
+    { id: 'rocket', n: 'Rocket', s: 'Send Money from the Rocket app', num: '+8801330027701', c: '#8C3494', wallet: 1 },
+    { id: 'bank', n: 'Bank transfer', s: 'Transfer to our bank account', bank: { holder: 'SHAKIL HOSSAIN', name: 'Rupali Bank Ltd.', acc: '5074010025503', routing: '185280882' }, c: '#1565C0', wallet: 1 },
+    { id: 'card', n: 'Debit or credit card', s: 'We send a secure payment link', c: '#455A64' }
+  ];
+
+  // feat: 1 puts a product in the Featured row on the home page.
+  var P = [
+    { id: 1, n: 'Salicylic Acid 3% Acne Repair Cream', b: 'Sadoer', t: 'Face cream', feat: 1, bn: 'নিখুঁত ত্বকের জন্য ৩% স্যালিসাইলিক অ্যাসিডের শক্তি', d: 'A 3% salicylic acid cream for acne-prone skin. It helps clear pimples, shrink the look of pores and fade acne marks, while nourishing and moisturizing.', k: ['Salicylic acid 3%'], poster: 1 },
+    { id: 2, n: 'Retinol Collagen Day & Night Cream', b: 'BL Vterly', t: 'Face cream', feat: 1, tag: 'New', s: '50 g', bn: 'যৌবনের ছাপ দূর করে ত্বক টানটান রাখে', d: 'A retinol and collagen cream that softens fine lines and wrinkles and helps skin feel firm, smooth and bright. For all skin types.', k: ['Retinol', 'Collagen', 'Hyaluronic acid', 'Vitamin E', 'Glycerin'], poster: 1 },
+    { id: 3, n: 'Baby Moisturizing Cream', b: 'Bioaqua', t: 'Face cream', bn: 'গভীর ময়েশ্চারাইজিংয়ের ক্রিম', d: 'A mild hydrating cream that locks in water and helps relieve dryness and rough patches. For all skin types.', k: ['Hyaluronic acid', 'Glycerin', 'Milk protein', 'Plant extract'], u: 'After cleansing, massage a generous amount gently into the face. Use twice a day.', poster: 1 },
+    { id: 4, n: 'Rice Raw Pulp Neck Cream', b: 'Bioaqua', t: 'Neck cream', s: '60 g', bn: 'বায়োঅ্যাকুয়া রাইস র-পাল্প নেক ক্রিম', d: 'A hydrating, firming neck cream with rice polypeptide. It helps reduce the look of fine lines on the neck and leaves skin tender, smooth and elastic.', k: ['Rice polypeptide', 'Rice pulp'], u: 'Wash and dry your neck. Massage the cream upward. Use every night.', poster: 1 },
+    { id: 5, n: 'Anti-Aging Collagen Face Cream', b: 'Sadoer', t: 'Face cream', s: '50 g', bn: 'কোলাজেন ফেস ক্রিম', d: 'A collagen face cream that helps firm skin, soften wrinkles and keep it deeply moisturized, smooth and bright.', k: ['Natural active collagen'], u: 'Use morning and night.', poster: 1 },
+    { id: 6, n: 'Freckle Snail Whitening Cream', b: 'Zoni', t: 'Face cream', s: '20 g', bn: 'শামুক ও ফর্সা করার ক্রিম', d: 'A snail whitening cream made to help even out and brighten the look of freckled skin.', k: ['Snail extract'], poster: 1 },
+    { id: 7, n: 'Nicotinamide Whitening Anti-Freckle Cream', b: 'Sadoer', t: 'Face cream', s: '20 g', bn: 'নিকোটিনামাইড হোয়াইটেনিং অ্যান্টি-ফ্রেকল ক্রিম', d: 'A nicotinamide cream that helps lighten dullness and dark spots, leaving skin bright, soft and smooth.', k: ['Nicotinamide'], u: 'Wash your face well. Wash and dry your hands, then apply a small amount at night.', poster: 1 },
+    { id: 8, n: 'Nicotinamide Whitening Freckle Essence', b: 'Sadoer', t: 'Serum', s: '30 ml', d: 'A nicotinamide essence made to lighten freckles and pigmentation. It leaves skin moisturized, smooth, tender and bright.', k: ['Nicotinamide'] },
+    { id: 9, n: 'Minoxidil Keratin Black Rice Serum', b: 'Saoder', t: 'Serum', feat: 1, s: '30 ml', imgs: ['t9', 't9b'], d: 'A hair serum for anti-hair loss and regrowth, with minoxidil, keratin and black rice extract. Made for stronger hair roots and healthier, shinier hair. For all hair types.', k: ['Minoxidil', 'Keratin', 'Black rice extract'] },
+    { id: 10, n: 'Salicylic Acid 3% Acne Repair Serum', b: 'Sadoer', t: 'Serum', s: '40 ml', bn: 'সাদোর স্যালিসাইলিক অ্যাসিড ব্রণ সারানোর সিরাম', d: 'An acne repair serum that helps clear pimples fast. Centella and niacinamide keep skin calm and nourished, while it helps shrink the look of pores and hydrates deeply.', k: ['Salicylic acid 3%', 'Collagen peptide', 'Centella asiatica', 'Niacinamide'], poster: 1 },
+    { id: 11, n: 'Whitening Dark Knuckle Serum', b: 'Sadoer', t: 'Serum', s: '50 ml', d: 'A whitening and brightening serum for dark knuckles, with niacinamide and vitamin C.', k: ['Niacinamide', 'Vitamin C'] },
+    { id: 12, n: 'Aloe Vera Eye Serum', b: 'Vioaya', t: 'Eye serum', feat: 1, s: '20 ml', bn: 'অ্যালোভেরা আই সিরাম, চোখের কালো দাগ দূর করে উজ্জ্বল ও তরুণ দেখায়', d: 'A lightweight eye serum that helps reduce dark circles, puffiness and fine lines around the eyes while it hydrates. Paraben free and sulfate free.', k: ['Aloe vera extract', 'Caffeine', 'Hyaluronic acid', 'Vitamin E'], u: 'On clean skin, gently tap a small amount around the eyes. Use morning and night.', poster: 1 },
+    { id: 13, n: 'Lip Gloss', b: 'Liphop', t: 'Lips', d: 'Liphop lip gloss in soft coral and pink shades.', k: [] },
+    { id: 14, n: 'Lip Paint, shade Love', b: 'Liphop', t: 'Lips', d: 'Liphop lip paint in the shade Love.', k: [] },
+    { id: 15, n: 'Moisturizing Lip Care Set', b: 'Marc Buse', t: 'Lips', d: 'A pink moisturizing lip care set with a lip gel tube, a lip jar and a small applicator brush.', k: [] },
+    { id: 16, n: 'Rice Raw Pulp Cleanser', b: 'Bioaqua', t: 'Face wash', s: '100 g', d: 'A deep cleansing face wash with rice extract. It soothes and repairs the skin and leaves it moist and delicate.', k: ['Rice extract'] },
+    { id: 17, n: 'Rice Raw Pulp Hair Removal Cream', b: 'Bioaqua', t: 'Hair removal', s: '60 g', bn: 'মসৃণ এবং উজ্জ্বল ত্বকের গোপন রহস্য', d: 'A hair removal cream with rice extract. It removes hair quickly without pain, brightens skin and leaves it smooth.', k: ['Rice raw pulp'] },
+    { id: 18, n: 'Whiten Hand Cream', b: 'Sadoer', t: 'Hand cream', s: '100 g', d: 'A niacinamide and vitamin C hand cream that helps fade melanin and brighten, while it hydrates and nourishes.', k: ['Niacinamide', 'Vitamin C'] }
+  ];
+  var CATS = ['All'].concat(P.map(function (p) { return p.t; }).filter(function (t, i, a) { return a.indexOf(t) === i; }));
+
+  // Prices from your WhatsApp catalog, in BDT: id -> [sale price, original price]. Product 15 has no catalog price yet.
+  var PRICE = { 1: [850, 950], 2: [450, 650], 3: [500, 600], 4: [750, 850], 5: [600, 700], 6: [700, 800], 7: [300, 400], 8: [400, 500], 9: [400, 550], 10: [750, 850], 11: [650, 750], 12: [550, 650], 13: [380, 450], 14: [380, 450], 16: [500, 600], 17: [400, 500], 18: [350, 400] };
+  P.forEach(function (p) { var x = PRICE[p.id]; if (x) { p.pr = x[0]; p.was = x[1]; } });
+
+  var S = { view: 'shop', cat: 'All', q: '', cart: [], sheet: null, pay: 'cod', form: { name: '', phone: '', addr: '', trx: '' } };
+  try { var saved = JSON.parse(localStorage.getItem('zoni-order') || '[]'); if (Array.isArray(saved)) S.cart = saved.filter(function (x) { return x && byId(x.id); }); } catch (e) {}
+
+  function byId(id) { return P.filter(function (p) { return p.id === id; })[0]; }
+  function payById(id) { return PAY.filter(function (m) { return m.id === id; })[0]; }
+  function persist() { try { localStorage.setItem('zoni-order', JSON.stringify(S.cart)); } catch (e) {} }
+  function count() { return S.cart.reduce(function (a, x) { return a + x.qty; }, 0); }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
+  var $ = function (id) { return document.getElementById(id); };
+  function money(n) { return '৳ ' + n.toLocaleString('en-US'); }
+  function priceHtml(p) { return p.pr ? '<span class="price"><b>' + money(p.pr) + '</b><s>' + money(p.was) + '</s></span>' : '<span class="price ask">Price on WhatsApp</span>'; }
+  function priceBlock(p) { return p.pr ? '<div class="pbox"><strong>' + money(p.pr) + '</strong><s>' + money(p.was) + '</s><span>Save ' + money(p.was - p.pr) + '</span></div>' : '<p class="meta">Price on WhatsApp</p>'; }
+  function photo(p, extra) { return '<div class="ph">' + (extra || '') + '<img src="img/t' + p.id + '.jpg" alt="' + esc(p.n) + '" loading="lazy"></div>'; }
+  function ext(href, cls, icon, text) { return '<a class="' + cls + '" href="' + href + '" target="_blank" rel="noopener">' + icon + '<span>' + text + '</span></a>'; }
+  function allPriced() { return S.cart.every(function (x) { return byId(x.id).pr; }); }
+  function cartTotal() { return S.cart.reduce(function (a, x) { return a + (byId(x.id).pr || 0) * x.qty; }, 0); }
+
+  function cards(list) {
+    return list.map(function (p) {
+      return '<button class="card" type="button" data-open="' + p.id + '">' + photo(p, p.tag ? '<span class="badge">' + p.tag + '</span>' : '') + '<div class="info"><span class="cat">' + p.b + '</span><span class="name">' + p.n + '</span><span class="meta">' + (p.s || p.t) + '</span>' + priceHtml(p) + '</div></button>';
+    }).join('');
+  }
+  // Recommendations: products not already shown, same category as the first match first.
+  function recs(list) {
+    var ids = list.map(function (p) { return p.id; }), first = list[0];
+    var pool = P.filter(function (p) { return ids.indexOf(p.id) < 0; });
+    if (first) pool.sort(function (a, b) { return (b.t === first.t) - (a.t === first.t); });
+    return pool.slice(0, 4);
+  }
+  function gridHtml() {
+    var q = S.q.trim().toLowerCase();
+    var list = P.filter(function (p) { return (S.cat === 'All' || p.t === S.cat) && (!q || (p.n + ' ' + p.b + ' ' + p.t).toLowerCase().indexOf(q) > -1); });
+    var out = list.length ? cards(list) : '<p class="empty">No products match that search.</p>';
+    if (q || S.cat !== 'All') { var r = recs(list); if (r.length) out += '<h3 class="recs">You may also like</h3>' + cards(r); }
+    return out;
+  }
+  function featured() {
+    var f = P.filter(function (p) { return p.feat; });
+    if (!f.length) return '';
+    return '<section class="block" aria-label="Featured products"><div class="sec-head"><h2>Featured products</h2><span>Our best picks</span></div><div class="feat-row">' + f.map(function (p) {
+      return '<article class="fcard"><button class="fopen" type="button" data-open="' + p.id + '">' + photo(p, '<span class="badge">' + (p.tag || 'Featured') + '</span>') + '<div class="info"><span class="cat">' + p.b + '</span><span class="name">' + p.n + '</span><span class="meta">' + (p.s || p.t) + '</span>' + priceHtml(p) + '</div></button><button class="mini" type="button" data-quick="' + p.id + '">Add to order</button></article>';
+    }).join('') + '</div></section>';
+  }
+
+  function social() {
+    return '<section class="follow" aria-label="Follow us"><span>Follow us</span><a class="sbtn" href="' + FB + '" target="_blank" rel="noopener" aria-label="Facebook page" title="Facebook page">' + ICON_FB + '</a><a class="sbtn" href="' + WA_CATALOG + '" target="_blank" rel="noopener" aria-label="WhatsApp catalog" title="WhatsApp catalog">' + ICON_WA + '</a></section>';
+  }
+
+  var HERO_IDS = [5, 8, 11];
+  function hero() {
+    var vis = HERO_IDS.map(function (id) { var p = byId(id); return '<button class="hv" type="button" data-open="' + id + '" aria-label="' + esc(p.n) + '"><img src="img/t' + id + '.jpg" alt="' + esc(p.n) + '"></button>'; }).join('');
+    var ic = function (d) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>'; };
+    return '<section class="hero2"><div><span class="eyebrow">আসল ফ্যাক্টরি পণ্য</span><h2 class="lead">Natural glow,<br><em>pure care.</em></h2><p class="sub">Face creams, serums, face wash and more from brands like Sadoer, Bioaqua and BL Vterly. Delivered all over Bangladesh.</p><div class="cta-row"><button class="btn" type="button" data-scroll="products">Shop now <span aria-hidden="true">&rarr;</span></button><a class="ghost pill" href="' + WA_CATALOG + '" target="_blank" rel="noopener">' + ICON_WA + '<span>WhatsApp catalog</span></a></div>' +
+      '<ul class="trust"><li>' + ic('<path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/>') + '<b>Original products</b></li>' +
+      '<li>' + ic('<path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.7"/><circle cx="17" cy="17.5" r="1.7"/>') + '<b>Delivery all over Bangladesh</b></li>' +
+      '<li>' + ic('<rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/><path d="M7 15h3"/>') + '<b>bKash, Nagad, Rocket</b></li></ul></div><div class="hvis">' + vis + '</div></section>';
+  }
+  function categories() {
+    var cats = CATS.slice(1);
+    return '<section class="block" id="categories"><div class="sec-head"><h2>Shop by category</h2><span>' + cats.length + ' categories</span></div><div class="cats">' + cats.map(function (c) {
+      var items = P.filter(function (p) { return p.t === c; });
+      return '<button class="cat-tile" type="button" data-cat="' + c + '" data-scroll="products"><img src="img/t' + items[0].id + '.jpg" alt="" loading="lazy"><b>' + c + '</b><small>' + items.length + (items.length > 1 ? ' products' : ' product') + '</small></button>';
+    }).join('') + '</div></section>';
+  }
+  function promo() {
+    var tile = function (p, dup) { return '<button class="mt" type="button" data-open="' + p.id + '" aria-label="' + esc(p.n) + '"' + (dup ? ' tabindex="-1" aria-hidden="true"' : '') + '><img src="img/t' + p.id + '.jpg" alt="' + (dup ? '' : esc(p.n)) + '" loading="lazy"></button>'; };
+    return '<section class="block" aria-label="All products"><div class="allb"><div class="allb-top"><div class="allb-t"><img class="allb-logo" src="img/logo.png" alt=""><div><span class="allb-eye">' + P.length + ' products, one shop</span><h2>Everything for your skin, <em>in one place.</em></h2></div></div><button class="btn gold" type="button" data-scroll="products">Shop all products <span aria-hidden="true">&rarr;</span></button></div>' +
+      '<div class="marq"><div class="track">' + P.map(function (p) { return tile(p, false); }).join('') + P.map(function (p) { return tile(p, true); }).join('') + '</div></div></div></section>';
+  }
+  var PHONE = '+880 1349-751534', PHONE_TEL = '+8801349751534';
+  var ICON_PHONE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>';
+  function footer() {
+    var sv = function (d, fill) { return '<svg viewBox="0 0 24 24" ' + (fill ? 'fill="currentColor"' : 'fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"') + ' aria-hidden="true">' + d + '</svg>'; };
+    var store = function (url, icon, top, name) {
+      var inner = icon + '<span><small>' + (url ? top : 'Coming soon') + '</small><b>' + name + '</b></span>';
+      return url ? '<a class="store" href="' + esc(url) + '" target="_blank" rel="noopener">' + inner + '</a>' : '<button class="store" type="button" disabled aria-label="' + name + ', coming soon">' + inner + '</button>';
+    };
+    var pay = function (id, label) { return '<span class="pay plogo" title="' + label + '"><img src="' + LOGO[id] + '" alt="' + label + '"></span>'; };
+    return '<footer class="foot2" id="contact"><img class="flogo" src="img/logo.png" alt="Zoni Skin Care logo"><div class="fname">Zoni Skin Care</div><div class="ftag">Natural glow, pure care. আসল ফ্যাক্টরি পণ্য</div>' +
+      '<nav class="flinks" aria-label="Footer"><button class="fl" type="button" data-go="shop" data-home="1">Home</button><button class="fl" type="button" data-scroll="products">Shop</button><button class="fl" type="button" data-scroll="categories">Categories</button><button class="fl" type="button" data-go="cart">My order</button><a class="fl" href="' + WA_CATALOG + '" target="_blank" rel="noopener">WhatsApp catalog</a><a class="fl" href="' + FB + '" target="_blank" rel="noopener">Facebook page</a></nav>' +
+      '<div class="fsoc"><a class="fsq" href="' + FB + '" target="_blank" rel="noopener" aria-label="Facebook page" title="Facebook page">' + ICON_FB + '</a><a class="fsq" href="' + WA_CHAT + '" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">' + ICON_WA + '</a><a class="fsq" href="tel:' + PHONE_TEL + '" aria-label="Call us" title="Call us">' + ICON_PHONE + '</a></div>' +
+      '<a class="fphone" href="tel:' + PHONE_TEL + '">' + ICON_PHONE + '<span>' + PHONE + '</span></a>' +
+      '<div class="stores">' + store(APP_LINKS.play, '<img src="' + LOGO.play + '" alt="">', 'Get it on', 'Google Play') + store(APP_LINKS.apple, '<img src="' + LOGO.apple + '" alt="">', 'Download on the', 'App Store') + '</div>' +
+      '<p class="cr">&copy; ' + new Date().getFullYear() + ' Zoni Skin Care. All rights reserved.</p>' +
+      '<div class="pays" aria-label="Payment methods">' + pay('bkash', 'bKash') + pay('nagad', 'Nagad') + pay('rocket', 'Rocket') + pay('bank', 'Bank transfer') + pay('card', 'Card')+ '</div>' +
+      '<p class="fnote">Patch test new products on your inner arm first.</p></footer>';
+  }
+
+  function shop() {
+    var browsing = S.q.trim() || S.cat !== 'All';
+    var h = '';
+    if (!browsing) h += hero() + categories() + promo() + featured();
+    h += '<section class="block" id="products"><div class="sec-head"><h2>All products</h2><span>' + P.length + ' items</span></div>';
+    h += '<input class="search" id="q" type="search" placeholder="Search products" aria-label="Search products" value="' + esc(S.q) + '">';
+    h += '<div class="chips" role="group" aria-label="Category">' + CATS.map(function (c) { return '<button class="chip" type="button" data-cat="' + c + '" data-scroll="products" aria-pressed="' + (S.cat === c) + '">' + c + '</button>'; }).join('') + '</div>';
+    h += '<div class="grid" id="grid">' + gridHtml() + '</div></section>';
+    return h + footer();
+  }
+
+  function cart() {
+    if (!S.cart.length) return '<h2 class="screen">My order</h2><p class="empty" style="padding:48px 0">Nothing here yet.<br><br><button class="ghost" type="button" data-go="shop">Browse products</button></p>' + footer();
+    var h = '<h2 class="screen">My order</h2><div class="cartgrid"><div><p class="hint">Prices are from our WhatsApp catalog. The delivery charge is confirmed when you send your order.</p>';
+    S.cart.forEach(function (x, i) {
+      var p = byId(x.id);
+      h += '<div class="line">' + photo(p) + '<div><div class="name">' + p.n + '</div><div class="meta">' + p.b + (p.s ? ' &middot; ' + p.s : '') + (p.pr ? ' &middot; ' + money(p.pr) : ' &middot; price on WhatsApp') + '</div><div class="qty"><button type="button" data-q="' + i + '" data-d="-1" aria-label="Remove one">&minus;</button><output>' + x.qty + '</output><button type="button" data-q="' + i + '" data-d="1" aria-label="Add one">+</button></div></div></div>';
+    });
+    h += '</div><aside class="summary">';
+    if (allPriced()) h += '<div class="total"><span>Total before delivery</span><strong>' + money(cartTotal()) + '</strong></div>';
+    h += '<p class="small">Pay with bKash, Nagad, Rocket, bank transfer, card or cash on delivery. You choose in the next step.</p>';
+    h += '<button class="primary" type="button" data-act="checkout">' + ICON_WA + '<span>Continue to payment</span></button>';
+    h += ext(WA_CATALOG, 'ghost', ICON_WA, 'Open WhatsApp catalog') + '</aside></div>' + footer();
+    return h;
+  }
+
+  function sendLabel(id) { return payById(id).wallet ? 'Send order and payment ID on WhatsApp' : 'Send order on WhatsApp'; }
+  function payInfo(id) {
+    var m = payById(id);
+    var amt = allPriced() ? ' <b>' + money(cartTotal()) + '</b>' : '';
+    var after = '<br>After you pay, enter the Transaction ID below and send your order on WhatsApp. Any delivery charge is confirmed on WhatsApp.';
+    if (id === 'cod') return 'Pay in cash when the courier delivers your order.';
+    if (id === 'card') return 'After you send this order, we send a secure card payment link on WhatsApp. Never type card details into this app.';
+    if (id === 'bank') return 'Transfer' + amt + ' to this account:<br>Account name: <b>' + esc(m.bank.holder) + '</b><br>Bank: <b>' + esc(m.bank.name) + '</b><br>Account number: <b>' + esc(m.bank.acc) + '</b> <button class="copy" type="button" data-copy="' + esc(m.bank.acc) + '">Copy number</button><br>Routing number: <b>' + esc(m.bank.routing) + '</b>' + after.replace('Transaction ID', 'transaction reference');
+    return 'Send Money' + amt + ' to <b>' + esc(m.num) + '</b> <button class="copy" type="button" data-copy="' + esc(m.num) + '">Copy number</button>' +
+      '<div class="payact"><a class="openapp" data-openapp="' + id + '" href="' + intentUrl(id) + '" target="_blank" rel="noopener" style="background:' + m.c + '"><img src="' + LOGO[id] + '" alt="">Open ' + m.n + ' app</a></div>' +
+      '<div class="qrbox"><svg viewBox="-3 -3 ' + (QR.n + 6) + ' ' + (QR.n + 6) + '" shape-rendering="crispEdges" role="img" aria-label="QR code with the ' + m.n + ' number ' + esc(m.num) + '"><rect x="-3" y="-3" width="' + (QR.n + 6) + '" height="' + (QR.n + 6) + '" fill="#fff"/><path d="' + QR.d + '" fill="#000"/></svg><span><b>Scan to get our ' + m.n + ' number</b><small>Scan with your phone camera or a QR scanner. It shows <b>' + esc(m.num) + '</b>. Then open ' + m.n + ', choose Send Money and paste it.</small></span></div>' + after;
+  }
+
+  function sheet() {
+    var s = S.sheet; if (!s) return '';
+    var end = '<div class="end"></div>', closeBtn = '<div class="closebar"><button class="close" type="button" data-act="close" aria-label="Close">&times;</button></div>';
+    if (s.checkout) {
+      var f = S.form, m = payById(S.pay);
+      var pms = PAY.map(function (x) { return '<label class="pm"><input type="radio" name="pay" value="' + x.id + '"' + (S.pay === x.id ? ' checked' : '') + '>' + (LOGO[x.id] ? '<img src="' + LOGO[x.id] + '" alt="">' : '<i style="background:' + x.c + '"></i>') + '<span><b>' + x.n + '</b><small>' + x.s + '</small></span></label>'; }).join('');
+      return closeBtn + '<h3 style="padding-right:44px">Payment and delivery</h3><p class="meta">' + count() + ' item' + (count() > 1 ? 's' : '') + (allPriced() ? ', ' + money(cartTotal()) + ' before delivery' : '') + '. Any delivery charge is confirmed on WhatsApp.</p><div class="form">' +
+        '<label class="f" for="f-name">Full name<input id="f-name" type="text" autocomplete="name" value="' + esc(f.name) + '"></label>' +
+        '<label class="f" for="f-phone">Mobile number<input id="f-phone" type="tel" inputmode="tel" autocomplete="tel" value="' + esc(f.phone) + '"></label>' +
+        '<label class="f" for="f-addr">Delivery address<textarea id="f-addr" autocomplete="street-address">' + esc(f.addr) + '</textarea></label>' +
+        '<div class="label" style="margin:4px 0 0">Payment method</div><div class="pms" role="radiogroup" aria-label="Payment method">' + pms + '</div>' +
+        '<div class="payinfo" id="pay-info">' + payInfo(S.pay) + '</div>' +
+        '<label class="f" id="trx-wrap" for="f-trx"' + (m.wallet ? '' : ' hidden') + '>Transaction ID (required, from your payment)<input id="f-trx" type="text" autocomplete="off" placeholder="Transaction ID from your payment" value="' + esc(f.trx) + '"></label>' +
+        '<p class="fine err" id="f-err" role="alert" hidden>Please fill in your name, mobile number and address.</p>' +
+        '<a class="primary" id="wa-send" href="' + WA_CHAT + '" target="_blank" rel="noopener">' + ICON_WA + '<span id="wa-label">' + sendLabel(S.pay) + '</span></a><p class="fine" id="f-hint" hidden>WhatsApp is opening with your order. Press send there to place it. If the message box is empty, paste it: your order text was copied.</p></div>' + end;
+    }
+    var p = byId(s.id);
+    var imgs = p.imgs || ['t' + p.id], cur = Math.min(s.img || 0, imgs.length - 1);
+    var h = closeBtn + '<div class="pcols"><div><div class="hero"><img src="img/' + imgs[cur] + '.jpg" alt="' + esc(p.n) + '"></div>';
+    if (imgs.length > 1) h += '<div class="thumbs">' + imgs.map(function (m, i) { return '<button class="thumb" type="button" data-img="' + i + '" aria-pressed="' + (i === cur) + '" aria-label="Photo ' + (i + 1) + '"><img src="img/' + m + '.jpg" alt=""></button>'; }).join('') + '</div>';
+    h += '</div><div><span class="cat">' + p.b + ' &middot; ' + p.t + '</span><h3>' + p.n + '</h3>' + (p.bn ? '<p class="bn">' + p.bn + '</p>' : '') + priceBlock(p) + '<p>' + p.d + '</p>';
+    if (p.s) h += '<div class="label">Pack</div><div class="row"><span class="size">' + p.s + '</span></div>';
+    if (p.k.length) h += '<div class="label">Key ingredients</div><div class="tags">' + p.k.map(function (k) { return '<span>' + k + '</span>'; }).join('') + '</div>';
+    if (p.u) h += '<div class="label">How to use</div><p style="margin:0">' + p.u + '</p>';
+    h += '<div class="pricelink">' + ext(WA_CATALOG, 'ghost', ICON_WA, 'Open WhatsApp catalog') + '</div></div></div>';
+    h += '<div class="buy"><div class="qty"><button type="button" data-sq="-1" aria-label="Fewer">&minus;</button><output>' + s.qty + '</output><button type="button" data-sq="1" aria-label="More">+</button></div><button class="primary" type="button" data-act="add">Add to my order</button></div>';
+    if (p.poster) h += '<div class="label">Full product details</div><img class="poster" src="img/p' + p.id + '.jpg" alt="Product details for ' + esc(p.n) + '" loading="lazy">';
+    return h + end;
+  }
+
+  var toastTimer;
+  function toast(msg) { var t = $('toast'); t.textContent = msg; t.hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.hidden = true; }, 1800); }
+
+  function orderNo() { if (!S.orderNo) { var d = new Date(); S.orderNo = 'ZSC-' + String(d.getDate()).padStart(2, '0') + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(Math.floor(100 + Math.random() * 900)); } return S.orderNo; }
+  function done() {
+    var o = S.done || {};
+    return '<div class="doneBox"><div class="tick" aria-hidden="true">&#10003;</div><h2 class="screen" style="margin:0">Order sent</h2>' +
+      '<p>Thank you' + (o.name ? ', ' + esc(o.name) : '') + '! Your order <b>' + esc(o.no || '') + '</b>' + (o.total ? ' (' + esc(o.total) + ')' : '') + ' is ready in WhatsApp.</p>' +
+      '<p class="hint">Press <b>Send</b> in WhatsApp if you have not yet. We will reply on WhatsApp to confirm your order, the delivery charge and the delivery day. Keep your order number.</p>' +
+      '<div class="doneBtns"><button class="primary" type="button" data-go="shop" data-home="1">Order new products</button>' + ext(WA_CHAT, 'ghost', ICON_WA, 'Open WhatsApp chat') + '</div></div>' + footer();
+  }
+  function finishOrder() {
+    var m = payById(S.pay);
+    S.done = { no: orderNo(), name: S.form.name.trim(), total: allPriced() ? money(cartTotal()) : '' };
+    S.cart = []; persist(); S.form = { name: '', phone: '', addr: '', trx: '' }; S.pay = 'cod'; S.sheet = null; S.orderNo = null; S.view = 'done';
+    draw(); window.scrollTo(0, 0);
+  }
+  function draw() {
+    $('view').innerHTML = S.view === 'cart' ? cart() : S.view === 'done' ? done() : shop();
+    ['tab', 'nav'].forEach(function (k) {
+      $(k + '-shop').setAttribute('aria-current', S.view === 'shop' ? 'page' : 'false');
+      $(k + '-cart').setAttribute('aria-current', S.view === 'cart' ? 'page' : 'false');
+    });
+    var n = count();
+    ['dot', 'dot2'].forEach(function (id) { $(id).textContent = n; $(id).hidden = !n; });
+    var sh = $('sheet');
+    if (S.sheet) {
+      var keep = sh.firstChild ? sh.firstChild.scrollTop : 0;
+      sh.hidden = false; sh.className = 'scrim';
+      sh.innerHTML = '<div class="sheet' + (S.sheet.checkout ? ' narrow' : '') + '" role="dialog" aria-modal="true">' + sheet() + '</div>';
+      if (S.sheet.keepScroll) sh.firstChild.scrollTop = keep;
+    } else { sh.hidden = true; sh.innerHTML = ''; }
+  }
+  function toSection(id) {
+    var el = $(id);
+    if (!el || S.view !== 'shop') { S.view = 'shop'; S.sheet = null; if (!el) { S.cat = 'All'; S.q = ''; } draw(); el = $(id); }
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  function go(v) { S.view = v; S.sheet = null; draw(); window.scrollTo(0, 0); }
+  function addToOrder(id, qty) {
+    var hit = S.cart.filter(function (x) { return x.id === id; })[0];
+    if (hit) hit.qty += qty; else S.cart.push({ id: id, qty: qty });
+    persist();
+  }
+
+  function orderMessage() {
+    var f = S.form, m = payById(S.pay);
+    var lines = S.cart.map(function (x, i) { var p = byId(x.id); return (i + 1) + '. ' + p.n + ' (' + p.b + ') x ' + x.qty + (p.pr ? ' - BDT ' + p.pr * x.qty : ''); });
+    var msg = 'Hello Zoni Skin Care, I would like to order.\nOrder No: ' + orderNo() + '\nDate: ' + new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) + '\n\n' + lines.join('\n');
+    if (allPriced()) msg += '\n\nOrder total before delivery: BDT ' + cartTotal();
+    msg += '\n\nPayment method: ' + m.n;
+    if (m.wallet) {
+      msg += '\nI have paid' + (allPriced() ? ' BDT ' + cartTotal() : '') + ' to ' + (m.num || (m.bank && m.bank.acc + ' (' + m.bank.name + ')'));
+      msg += '\nTransaction ID: ' + f.trx.trim();
+    }
+    msg += '\n\nName: ' + f.name.trim() + '\nMobile: ' + f.phone.trim() + '\nAddress: ' + f.addr.trim();
+    msg += m.wallet ? '\n\nPlease verify my payment and confirm my order.' : '\n\nPlease confirm the final amount including delivery.';
+    return msg;
+  }
+
+  // Keep the WhatsApp button's link filled with the order text at all times, so the first tap already carries the message.
+  function syncWa() {
+    var a = $('wa-send'); if (!a) return;
+    var f = S.form, ok = f.name.trim() && f.phone.trim() && f.addr.trim() && (!payById(S.pay).wallet || f.trx.trim());
+    a.href = ok ? WA_CHAT + '?text=' + encodeURIComponent(orderMessage()) : WA_CHAT;
+  }
+  document.addEventListener('input', function (e) {
+    var id = e.target.id;
+    if (id === 'q') { S.q = e.target.value; $('grid').innerHTML = gridHtml(); }
+    if (id === 'f-name') S.form.name = e.target.value;
+    if (id === 'f-phone') S.form.phone = e.target.value;
+    if (id === 'f-addr') S.form.addr = e.target.value;
+    if (id === 'f-trx') S.form.trx = e.target.value;
+    syncWa();
+  });
+  document.addEventListener('change', function (e) {
+    if (e.target.name !== 'pay') return;
+    S.pay = e.target.value;
+    $('pay-info').innerHTML = payInfo(S.pay);
+    $('trx-wrap').hidden = !payById(S.pay).wallet;
+    $('wa-label').textContent = sendLabel(S.pay);
+    $('f-err').hidden = true;
+    syncWa();
+  });
+  document.addEventListener('click', function (e) {
+    var oa = e.target.closest('a[data-openapp]');
+    if (oa) {
+      var num = payById(oa.dataset.openapp).num;
+      try { navigator.clipboard.writeText(num).catch(function () {}); } catch (x) {}
+      toast('Number copied. Paste it in Send Money.');
+      if (!/Android/i.test(navigator.userAgent)) { e.preventDefault(); toast('Open the ' + payById(oa.dataset.openapp).n + ' app on your phone. Number copied.'); }
+      return;
+    }
+    var el = e.target.closest('button, .scrim, #wa-send'); if (!el) return;
+    if (el.id === 'wa-send') {
+      var f = S.form;
+      var err = $('f-err');
+      if (!f.name.trim() || !f.phone.trim() || !f.addr.trim()) { e.preventDefault(); err.textContent = 'Please fill in your name, mobile number and address.'; err.hidden = false; return; }
+      if (payById(S.pay).wallet && !f.trx.trim()) { e.preventDefault(); err.textContent = 'Please pay first, then enter the Transaction ID from your payment.'; err.hidden = false; $('f-trx').focus(); return; }
+      err.hidden = true; $('f-hint').hidden = false;
+      var text = orderMessage();
+      el.href = WA_CHAT + '?text=' + encodeURIComponent(text);
+      try { navigator.clipboard.writeText(text).catch(function () {}); } catch (x) {}
+      setTimeout(finishOrder, 700);
+      return;
+    }
+    var d = el.dataset;
+    if (el.classList.contains('scrim') && e.target === el) { S.sheet = null; return draw(); }
+    if (d.copy) {
+      var copied = function () { toast('Number copied'); }, shown = function () { toast('Number: ' + d.copy); };
+      try { navigator.clipboard.writeText(d.copy).then(copied, shown); } catch (x) { shown(); }
+      return;
+    }
+    if (d.go) { if (d.home) { S.cat = 'All'; S.q = ''; } return go(d.go); }
+    if (d.cat) { S.cat = d.cat; draw(); if (d.scroll) toSection(d.scroll); return; }
+    if (d.scroll) return toSection(d.scroll);
+    if (d.open) { S.sheet = { id: +d.open, qty: 1, img: 0 }; return draw(); }
+    if (d.quick) { addToOrder(+d.quick, 1); draw(); return toast('Added to your order'); }
+    if (d.img) { S.sheet.img = +d.img; S.sheet.keepScroll = true; return draw(); }
+    if (d.sq) { S.sheet.qty = Math.max(1, Math.min(9, S.sheet.qty + +d.sq)); S.sheet.keepScroll = true; return draw(); }
+    if (d.q) {
+      var i = +d.q; S.cart[i].qty += +d.d;
+      if (S.cart[i].qty < 1) S.cart.splice(i, 1);
+      persist(); return draw();
+    }
+    switch (d.act) {
+      case 'close': S.sheet = null; return draw();
+      case 'add': addToOrder(S.sheet.id, S.sheet.qty); S.sheet = null; draw(); return toast('Added to your order');
+      case 'checkout': S.sheet = { checkout: true }; return draw();
+    }
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && S.sheet) { S.sheet = null; draw(); } });
+  draw();
+})();
+</script>
+<script>
+if ('serviceWorker' in navigator) { window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); }); }
+</script>
+</body>
+</html>

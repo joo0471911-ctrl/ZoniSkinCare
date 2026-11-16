@@ -1,0 +1,37 @@
+{
+  "name": "Zoni Skin Care",
+  "short_name": "Zoni",
+  "description": "Skin care shop with delivery all over Bangladesh. Order on WhatsApp.",
+  "id": "/",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFF5F8",
+  "theme_color": "#C2185B",
+  "lang": "en",
+  "categories": [
+    "shopping",
+    "beauty"
+  ],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
